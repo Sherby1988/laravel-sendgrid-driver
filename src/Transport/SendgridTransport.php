@@ -196,8 +196,8 @@ class SendgridTransport extends AbstractTransport
                 'content' => base64_encode($attachment->getBody()),
                 'filename' => $this->getAttachmentName($attachment),
                 'type' => $this->getAttachmentContentType($attachment),
-                'disposition' => $attachment->getPreparedHeaders()->getHeaderParameter('Parameterized', 'Content-Disposition'),
-                'content_id' => $attachment->getContentId(),
+                'disposition' => $attachment->getPreparedHeaders()->getHeaderBody('Content-Disposition'),
+                'content_id' => $this->getAttachmentName($attachment),
             ];
         }
         return $attachments;
